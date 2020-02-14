@@ -50,7 +50,7 @@ public class JoomlaHugoConverter {
         cfg.setClassLoaderForTemplateLoading(ClassLoader.getSystemClassLoader(), "/");
         cfg.setDefaultEncoding("UTF-8");
         cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
-        cfg.setLogTemplateExceptions(false);
+        cfg.setLogTemplateExceptions(true);
 
         categoryTemplate = cfg.getTemplate("categoryPage.toml.ftl");
         contentTemplate = cfg.getTemplate("defaultPage.toml.ftl");
@@ -106,6 +106,7 @@ public class JoomlaHugoConverter {
                     resultSet.getString("images"),
                     resultSet.getString("catAlias")
             ));
+            logger.info("(** "+articleQuery);
 
             content.stream().filter(JoomlaContent::isPublished).forEach(c-> {
                 nastyContentChecker.checkForNastyContent(c);

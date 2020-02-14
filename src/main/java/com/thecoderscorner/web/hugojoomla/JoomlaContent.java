@@ -41,10 +41,12 @@ public class JoomlaContent {
         this.alias = alias;
         this.parent = parent;
         try {
+	    if(!images.isEmpty()) {
             introImage = new JoomlaImage("intro", images);
             bodyImage = new JoomlaImage("fulltext", images);
+	    }
         } catch (ParseException e) {
-            LOGGER.warn("Images for " + id +" not processed",e);
+            LOGGER.warn("Images for " + id +" not processed ("+images,e);
         }
     }
 

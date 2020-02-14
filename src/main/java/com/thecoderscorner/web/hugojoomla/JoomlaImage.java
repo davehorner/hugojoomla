@@ -18,15 +18,21 @@ public class JoomlaImage {
     }
 
     public JoomlaImage(String imgType, String json) throws ParseException {
+	if(false) {
+        JSONObject imageBlock;
         JSONParser parser = new JSONParser();
-        JSONObject imageBlock = (JSONObject) parser.parse(json);
-        String url = imageBlock.getOrDefault("image_" + imgType, "").toString();
+        imageBlock = (JSONObject) parser.parse(json);
+        this.url = imageBlock.getOrDefault("image_" + imgType, "").toString();
         htmlClass = imageBlock.getOrDefault("float_" + imgType, "").toString();
         alt = imageBlock.getOrDefault("image_" + imgType + "_alt", "").toString();
         if(!Strings.isNullOrEmpty(url) && !url.startsWith("http")) {
             url = "/" + url;
         }
-        this.url = url;
+	} else {
+        this.url = json;
+        htmlClass = "";
+        alt = json;
+	}
     }
 
     public boolean isImagePresent() {
