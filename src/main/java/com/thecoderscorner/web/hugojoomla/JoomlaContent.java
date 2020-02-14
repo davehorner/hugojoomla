@@ -34,8 +34,8 @@ public class JoomlaContent {
         this.status = status;
         this.author = author;
         this.createdDate = createdDate;
-        this.intro = intro;
-        this.body = body;
+        this.intro = body;
+        this.body = intro;
         this.category = category;
         this.title = title;
         this.alias = alias;

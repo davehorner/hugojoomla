@@ -20,6 +20,7 @@ public class HugoJoomla {
             options.addOption("outdir", true, "output directory");
             options.addOption("dbext", true, "database extension");
             options.addOption("buildtags", true, "if true, process tags, otherwise do not process");
+            options.addOption("nopath", true, "if true, process tags, otherwise do not process");
 
             CommandLineParser parser = new DefaultParser();
             CommandLine cmd = parser.parse(options, args);
@@ -30,6 +31,7 @@ public class HugoJoomla {
             System.setProperty("category.action", cmd.getOptionValue("cataction", "TOPONLY"));
             System.setProperty("db.ext", cmd.getOptionValue("dbext"));
             System.setProperty("buildtags", cmd.getOptionValue("buildtags", "true"));
+            System.setProperty("nopath", cmd.getOptionValue("nopath", "true"));
 
             ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("hugoJoomla.xml");
             ctx.getBean("joomlaHugoConverter", JoomlaHugoConverter.class).performConversion();
